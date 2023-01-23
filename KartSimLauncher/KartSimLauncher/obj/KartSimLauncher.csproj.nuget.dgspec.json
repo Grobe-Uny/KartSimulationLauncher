@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj": {}
+    "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj": {}
   },
   "projects": {
-    "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj": {
+    "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj",
+        "projectUniqueName": "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj",
         "projectName": "KartSimLauncher",
-        "projectPath": "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj",
+        "projectPath": "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj",
         "packagesPath": "C:\\Users\\luka.beneta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\obj\\",
+        "outputPath": "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\luka.beneta\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "Google.Apis.Drive.v3": {
+              "target": "Package",
+              "version": "[1.59.0.2922, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

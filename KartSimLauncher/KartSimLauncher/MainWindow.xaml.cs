@@ -1,7 +1,9 @@
-﻿using System;
+﻿using KartSimLauncher.Scripts.Networking;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -45,6 +47,7 @@ namespace KartSimLauncher
             });
 
             th.Start();
+
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
@@ -66,13 +69,23 @@ namespace KartSimLauncher
             }
         }
 
-        private void Start_Button_Click(object sender, RoutedEventArgs e)
+        private async void Start_Button_Click(object sender, RoutedEventArgs e)
         {
-            process = Process.Start(file);
-            process.EnableRaisingEvents = true;
-            WindowState = WindowState.Minimized;
-            Task.Delay(DelayforWindowStateAnim).Wait();
-            ShowInTaskbar = false;
+            var fi = new FileInfo(file);
+            if (fi.Exists)
+            {
+                process = Process.Start(file);
+                process.EnableRaisingEvents = true;
+                WindowState = WindowState.Minimized;
+                Task.Delay(DelayforWindowStateAnim).Wait();
+                ShowInTaskbar = false;
+            }
+            else
+            {
+                await Updater.CheckForFiles();
+                Displaying_Debug_Data.Text = Updater.url;
+                process = Process.Start(Updater.NewSimulationEXE);
+            }
         }
 
         private void Options_Button_Click(object sender, RoutedEventArgs e)

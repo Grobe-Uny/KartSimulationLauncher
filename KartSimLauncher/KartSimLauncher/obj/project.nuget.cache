@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "FpnSzY9JOo9oCzSvESGHPOtuR2K0LPWeHVbhiBKjqQlRo+AVFfZ9hVqvmbRXUSG/nE2j6znuCPLVc+RlKi38cA==",
+  "dgSpecHash": "YF8w/YMzcdWEoXgR2nu3BIEy+qZSFjb/WYPNiPstggsFaxL8Ku9e40bTpwwzQWytz25VqdNbR5vmAzh9jZgTdg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\luka.beneta\\Documents\\GitHub\\KartSimulationLauncher\\KartSimulationLauncher\\KartSimLauncher\\KartSimLauncher\\KartSimLauncher.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\luka.beneta\\.nuget\\packages\\google.apis\\1.59.0\\google.apis.1.59.0.nupkg.sha512",
+    "C:\\Users\\luka.beneta\\.nuget\\packages\\google.apis.auth\\1.59.0\\google.apis.auth.1.59.0.nupkg.sha512",
+    "C:\\Users\\luka.beneta\\.nuget\\packages\\google.apis.core\\1.59.0\\google.apis.core.1.59.0.nupkg.sha512",
+    "C:\\Users\\luka.beneta\\.nuget\\packages\\google.apis.drive.v3\\1.59.0.2922\\google.apis.drive.v3.1.59.0.2922.nupkg.sha512",
+    "C:\\Users\\luka.beneta\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
   "logs": []
 }
