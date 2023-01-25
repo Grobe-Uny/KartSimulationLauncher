@@ -1,4 +1,5 @@
-﻿using KartSimLauncher.Scripts.Networking;
+﻿using KartSimLauncher.Scripts.Installer;
+using KartSimLauncher.Scripts.Networking;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,19 +73,19 @@ namespace KartSimLauncher
         private async void Start_Button_Click(object sender, RoutedEventArgs e)
         {
             var fi = new FileInfo(file);
-            if (fi.Exists)
+            if (!fi.Exists)
+            {
+                Displaying_Debug_Data.Text = "Downloading from: " + Updater.urlForInstallation;
+                await Updater.CheckForFiles();
+                await Installer.Install(Updater.DownloadPath);
+            }
+            else
             {
                 process = Process.Start(file);
                 process.EnableRaisingEvents = true;
                 WindowState = WindowState.Minimized;
                 Task.Delay(DelayforWindowStateAnim).Wait();
                 ShowInTaskbar = false;
-            }
-            else
-            {
-                await Updater.CheckForFiles();
-                Displaying_Debug_Data.Text = Updater.url;
-                process = Process.Start(Updater.NewSimulationEXE);
             }
         }
 

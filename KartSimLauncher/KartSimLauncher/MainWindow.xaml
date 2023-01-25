@@ -3,18 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KartSimLauncher"
+        xmlns:local="clr-namespace:KartSimLauncher" xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="Kart Simulation Launcher" Height="720" Width="1280" MinHeight="600" MinWidth="800">
+        Title="Kart Simulation Launcher" Height="720" Width="1280" MinHeight="600" MinWidth="800" Icon="Resources\Images\KartSimLauncher.png">
     <Grid>
         <Border Background="LightGray"></Border>
-        <Image Source="Izgled Karta.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="296" Width="484"></Image>
+        <Image Source="Resources\Images\Izgled Karta.png" HorizontalAlignment="Center" VerticalAlignment="Center" Height="296" Width="484"></Image>
         <Border Background="DarkGray" VerticalAlignment="Bottom" Height="40"/>
         <Border Background="DarkGray" HorizontalAlignment="Left" Width="30"></Border>
         <Button Name="Exit_Button" Content="Exit" Foreground="GhostWhite" Background="DimGray" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,10" Height="20" Width="80" Click="Exit_Button_Click"></Button>
         <Button Name="Start_Button" Content="Start App" Foreground="GhostWhite" Background="DimGray" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,10" Height="20" Width="80" Click="Start_Button_Click"></Button>
         <Button Name="Options_Button" Background="Transparent" BorderThickness="0" Width="30" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Options_Button_Click">
-            <Image Source="Options.png"></Image>
+            <Image Source="Resources\Images\Options.png"></Image>
         </Button>
         <TextBlock Name="Displaying_Debug_Data" Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="800" Height="40" Foreground="Black" Text="" TextAlignment="Center" Margin="0,0,0,0" FontSize="17" FontWeight="Bold"></TextBlock>
         <StackPanel Name="Options_Background" Background="DarkGray" HorizontalAlignment="Left" MinWidth="0" Width="400" Margin="30,0,0,40" Opacity="0" IsEnabled="False">

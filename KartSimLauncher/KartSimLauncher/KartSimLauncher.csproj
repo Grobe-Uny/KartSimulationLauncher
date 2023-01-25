@@ -10,6 +10,8 @@
   <ItemGroup>
     <None Remove="Izgled Karta.png" />
     <None Remove="Options.png" />
+    <None Remove="Resources\Images\KartSimLauncher.ico" />
+    <None Remove="Resources\Images\KartSimLauncher.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,14 +19,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Cake.Powershell" Version="2.0.0" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.59.0.2922" />
+    <PackageReference Include="WPF-UI" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Izgled Karta.png">
+    <Resource Include="Resources\Images\Izgled Karta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Options.png">
+    <Resource Include="Resources\Images\KartSimLauncher.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\KartSimLauncher.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Options.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
