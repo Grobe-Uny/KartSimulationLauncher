@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
@@ -17,22 +18,22 @@ namespace KartSimLauncher.Scripts.Installer
         {
             PowerShell powerShell = null;
 
-            try 
-            { 
-                using(powerShell = PowerShell.Create())
+            try
+            {
+                using (powerShell = PowerShell.Create())
                 {
                     powerShell.AddScript("$setup=Start-Process 'C:\\Users\\{ Environment.UserName}\\AppData\\Local\\Temp\\mysetup.exe' -ArgumentList ' / Silent ' -Wait -PassThru");
-                    Collection<PSObject> PSOutput = powerShell.Invoke(); foreach (PSObject outputItem in PSOutput) 
+                    Collection<PSObject> PSOutput = powerShell.Invoke(); foreach (PSObject outputItem in PSOutput)
                     {
-                        if(outputItem != null)
+                        if (outputItem != null)
                         {
                             Console.WriteLine(outputItem.ToString());
                         }
                     }
 
                 }
-            
-                if(powerShell.Streams.Error.Count > 0 ) 
+
+                if (powerShell.Streams.Error.Count > 0)
                 {
                     string temp = powerShell.Streams.Error.First().ToString();
                     Console.WriteLine("Error: {0}", temp);
@@ -43,16 +44,24 @@ namespace KartSimLauncher.Scripts.Installer
                     Console.WriteLine("Installation has completed succesfully");
                 }
 
-            
+
             }
 
 
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine("Error occured: {0}", ex.InnerException);
                 //throw;
             }
-            finally { if(powerShell != null) { powerShell.Dispose(); } }
+            finally
+            {
+                if (powerShell != null)
+                {
+                    powerShell.Dispose();
+                    //Directory.Delete(@"C:\TempDownload", true);
+                }
+
+            }
         } 
               
     }

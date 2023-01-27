@@ -38,6 +38,7 @@ namespace KartSimLauncher
         public MainWindow()
         {
             InitializeComponent();
+            Start();
             Thread th = new Thread(() =>
             {
                 while (true)
@@ -50,7 +51,10 @@ namespace KartSimLauncher
             th.Start();
 
         }
-
+        public void Start()
+        {
+            Updater.Client.Timeout = TimeSpan.FromHours(2);
+        }
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);   
@@ -75,9 +79,11 @@ namespace KartSimLauncher
             var fi = new FileInfo(file);
             if (!fi.Exists)
             {
-                Displaying_Debug_Data.Text = "Downloading from: " + Updater.urlForInstallation;
+                Displaying_Debug_Data.Text = "Downloading from: " + Updater.SetupUrl;
                 await Updater.CheckForFiles();
                 await Installer.Install(Updater.DownloadPath);
+                //Directory.Delete(Updater.DownloadFolder, true);
+                Displaying_Debug_Data.IsEnabled = false;
             }
             else
             {
