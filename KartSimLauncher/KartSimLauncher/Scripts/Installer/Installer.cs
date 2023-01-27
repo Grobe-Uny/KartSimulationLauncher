@@ -11,9 +11,6 @@ namespace KartSimLauncher.Scripts.Installer
 {
     public static class Installer
     {
-
-
-
         public static async Task Install(string ExecutableFilePath)
         {
             PowerShell powerShell = null;
@@ -30,25 +27,18 @@ namespace KartSimLauncher.Scripts.Installer
                             Console.WriteLine(outputItem.ToString());
                         }
                     }
-
-                }
-
-                if (powerShell.Streams.Error.Count > 0)
+                }            
+                if(powerShell.Streams.Error.Count > 0 ) 
                 {
                     string temp = powerShell.Streams.Error.First().ToString();
                     Console.WriteLine("Error: {0}", temp);
-
                 }
                 else
                 {
                     Console.WriteLine("Installation has completed succesfully");
                 }
-
-
             }
-
-
-            catch (Exception ex)
+            catch(Exception ex) 
             {
                 Console.WriteLine("Error occured: {0}", ex.InnerException);
                 //throw;
