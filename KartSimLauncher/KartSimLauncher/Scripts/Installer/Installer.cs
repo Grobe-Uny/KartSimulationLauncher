@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
@@ -19,7 +20,7 @@ namespace KartSimLauncher.Scripts.Installer
             {
                 using (powerShell = PowerShell.Create())
                 {
-                    powerShell.AddScript("$setup=Start-Process 'C:\\Users\\{ Environment.UserName}\\AppData\\Local\\Temp\\mysetup.exe' -ArgumentList ' / Silent ' -Wait -PassThru");
+                    powerShell.AddScript("$setup=Start-Process 'C:\\Users\\{ Environment.UserName}\\Desktop\\Zavrsni Rad\\Install\\Output\\mysetup.exe' -ArgumentList ' / Silent ' -Wait -PassThru");
                     Collection<PSObject> PSOutput = powerShell.Invoke(); foreach (PSObject outputItem in PSOutput)
                     {
                         if (outputItem != null)
@@ -27,8 +28,8 @@ namespace KartSimLauncher.Scripts.Installer
                             Console.WriteLine(outputItem.ToString());
                         }
                     }
-                }            
-                if(powerShell.Streams.Error.Count > 0 ) 
+                }
+                if (powerShell.Streams.Error.Count > 0)
                 {
                     string temp = powerShell.Streams.Error.First().ToString();
                     Console.WriteLine("Error: {0}", temp);
@@ -38,7 +39,7 @@ namespace KartSimLauncher.Scripts.Installer
                     Console.WriteLine("Installation has completed succesfully");
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine("Error occured: {0}", ex.InnerException);
                 //throw;
@@ -52,7 +53,17 @@ namespace KartSimLauncher.Scripts.Installer
                 }
 
             }
-        } 
+        }
+
+        public static void InstallExe(string InstallFile)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = InstallFile;
+            process.StartInfo.Arguments = "/silent";
+            process.StartInfo.WindowStyle =  ProcessWindowStyle.Hidden;
+            var procces = Process.Start(InstallFile);
+            process.WaitForExit();
+        }
               
     }
 }

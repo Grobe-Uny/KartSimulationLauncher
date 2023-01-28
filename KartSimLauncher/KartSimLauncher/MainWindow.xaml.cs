@@ -1,4 +1,5 @@
-﻿using KartSimLauncher.Scripts.Installer;
+﻿using KartSimLauncher.Scripts.Files.File_Manager;
+using KartSimLauncher.Scripts.Installer;
 using KartSimLauncher.Scripts.Networking;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace KartSimLauncher
     {
         
         string file = @"C:\Program Files\Kart Simulator\Kart Simulator.exe";
+        string tempFileInstallation = $"C:\\Users\\{Environment.UserName}\\Desktop\\Zavrsni rad\\Install\\Output\\mysetup.exe";
 
         public static bool isAppRunning = false;
         public static Process process;
@@ -54,6 +56,7 @@ namespace KartSimLauncher
         public void Start()
         {
             Updater.Client.Timeout = TimeSpan.FromHours(2);
+            FileChecker.CheckForDownloadedFiles();
         }
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -77,12 +80,18 @@ namespace KartSimLauncher
         private async void Start_Button_Click(object sender, RoutedEventArgs e)
         {
             var fi = new FileInfo(file);
-            if (!fi.Exists)
+            if (!fi.Exists && !FileChecker.isDownloaded)
             {
                 Displaying_Debug_Data.Text = "Downloading from: " + Updater.SetupUrl;
                 await Updater.CheckForFiles();
-                await Installer.Install(Updater.DownloadPath);
-                //Directory.Delete(Updater.DownloadFolder, true);
+                Displaying_Debug_Data.Text = "Instaling file: " + Updater.DownloadPath;
+                Installer.InstallExe(tempFileInstallation);
+                Displaying_Debug_Data.IsEnabled = false;
+            }
+            else if (!fi.Exists && FileChecker.isDownloaded)
+            {
+                Displaying_Debug_Data.Text = "Installing file: " + Updater.DownloadPath;
+                Installer.InstallExe(tempFileInstallation);
                 Displaying_Debug_Data.IsEnabled = false;
             }
             else

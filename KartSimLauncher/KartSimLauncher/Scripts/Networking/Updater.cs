@@ -14,7 +14,7 @@ namespace KartSimLauncher.Scripts.Networking
         public static string PlayerDllUrl = "https://774f-86-33-85-245.eu.ngrok.io/file?FileName=Kart+Simulator.exe";
         public static string VersionTXTUrl = "https://774f-86-33-85-245.eu.ngrok.io/file?FileName=Kart+Simulator.exe";
         public static string WinPixRuntimeDllUrl = "https://774f-86-33-85-245.eu.ngrok.io/file?FileName=Kart+Simulator.exe";*/
-        public static string SetupUrl = "https://774f-86-33-85-245.eu.ngrok.io/file?FileName=mysetup.exe";
+        public static string SetupUrl = "https://799b-86-33-92-119.eu.ngrok.io/file?FileName=mysetup.exe";
 
         public static HttpClient Client = new HttpClient();
         public static OpenFileDialog folderBrowser = new OpenFileDialog();
@@ -39,15 +39,11 @@ namespace KartSimLauncher.Scripts.Networking
             CreateTempDir();
             File.Create(DownloadPath).Close();
             var bytes = await nezDownloadnesto();
-            File.WriteAllBytes(DownloadPath, bytes);
+            await File.WriteAllBytesAsync(DownloadPath, bytes);
 
         }
         public static async Task<byte[]> nezDownloadnesto()
         {
-            /*var response = await Client.GetAsync(SetupUrl);
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsByteArrayAsync();
-            response.Dispose();*/
             var content = await Client.GetByteArrayAsync(SetupUrl);
             return content;
         }
