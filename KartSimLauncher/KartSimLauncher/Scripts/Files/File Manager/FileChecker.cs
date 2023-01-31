@@ -10,7 +10,7 @@ namespace KartSimLauncher.Scripts.Files.File_Manager
 {
     internal class FileChecker
     {
-        public static bool isDownloaded = false;
+        public static bool IsDownloaded = false;
 
         
 
@@ -22,16 +22,16 @@ namespace KartSimLauncher.Scripts.Files.File_Manager
             //if (Directory.Exists(Updater.DownloadFolder) && File.Exists(Updater.DownloadPath))
             if (Directory.Exists(Updater.DownloadFolder) && fi.Exists)
             {
-                isDownloaded = true;
+                IsDownloaded = true;
             }
             else
             {
-                isDownloaded = false;
+                IsDownloaded = false;
             }
 
             if (fi.Exists)
             {
-                isDownloaded = false;
+                IsDownloaded = false;
             }
         }
 
