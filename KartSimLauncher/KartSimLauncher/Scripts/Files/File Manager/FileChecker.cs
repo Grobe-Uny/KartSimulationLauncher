@@ -17,9 +17,10 @@ namespace KartSimLauncher.Scripts.Files.File_Manager
         public static void CheckForDownloadedFiles()
         {
             System.IO.FileInfo fi = new FileInfo(@"C:\TempDownload\mysetup.exe");
-            long size = fi.Length;
+            //long size = fi.Length;
 
-            if (Directory.Exists(Updater.DownloadFolder) && File.Exists(Updater.DownloadPath))
+            //if (Directory.Exists(Updater.DownloadFolder) && File.Exists(Updater.DownloadPath))
+            if (Directory.Exists(Updater.DownloadFolder) && fi.Exists)
             {
                 isDownloaded = true;
             }
@@ -28,7 +29,7 @@ namespace KartSimLauncher.Scripts.Files.File_Manager
                 isDownloaded = false;
             }
 
-            if (size == 0)
+            if (fi.Exists)
             {
                 isDownloaded = false;
             }
