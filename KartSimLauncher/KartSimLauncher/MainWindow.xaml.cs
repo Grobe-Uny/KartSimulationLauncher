@@ -28,30 +28,36 @@ namespace KartSimLauncher
     public partial class MainWindow : Window
     {
         
-        string file = @"C:\Program Files\Kart Simulator\Kart Simulator.exe";
-        string tempFileInstallation = $"C:\\Users\\{Environment.UserName}\\Desktop\\Zavrsni rad\\Install\\Output\\mysetup.exe";
+        string File = @"C:\Program Files\Kart Simulator\Kart Simulator.exe";
+        string TempFileInstallation = $"C:\\Users\\{Environment.UserName}\\Desktop\\Zavrsni rad\\Install\\Output\\mysetup.exe";
 
-        public static bool isAppRunning = false;
-        public static Process process;
+        public static bool IsAppRunning = false;
+        public static Process Process;
 
-        public int DelayforWindowStateAnim = 100;
-        public int DelayforUpdate = 100;
+        public int DelayForWindowStateAnim = 100;
+        public int DelayForUpdate = 100;
 
         public MainWindow()
         {
             InitializeComponent();
             Start();
-            Thread th = new Thread(() =>
+            /*Thread th = new Thread(() =>
             {
                 while (true)
                 {
                     Update();
                     Task.Delay(DelayforUpdate).Wait();
                 }
+            });*/ // reka sn ti da je thread "lose"
+            
+            Task.Run(() => 
+            {
+                while(true)
+                {
+                    Update();
+                    await Task.Delay(DelayForUpdate);
+                }
             });
-
-            th.Start();
-
         }
         public void Start()
         {
@@ -64,11 +70,11 @@ namespace KartSimLauncher
         }
         public void Update()
         {
-            if(process == null)
+            if(Process == null)
             {
                 return;
             }
-            if (process.HasExited == true)
+            if (Process.HasExited == true)
             {
                 Dispatcher.Invoke(() => { 
                     WindowState = WindowState.Normal;
@@ -79,29 +85,35 @@ namespace KartSimLauncher
 
         private async void Start_Button_Click(object sender, RoutedEventArgs e)
         {
-            var fi = new FileInfo(file);
-            if (!fi.Exists && !FileChecker.isDownloaded)
+            var fi = new FileInfo(File);//kartsim.exe, fc=setup.exe
+            if (!fi.Exists && !FileChecker.IsDownloaded)
             {
                 Displaying_Debug_Data.Text = "Downloading from: " + Updater.SetupUrl;
                 await Updater.CheckForFiles();
                 Displaying_Debug_Data.Text = "Instaling file: " + Updater.DownloadPath;
-                Installer.InstallExe(tempFileInstallation);
+                Installer.InstallExe(TempFileInstallation);
                 Displaying_Debug_Data.IsEnabled = false;
             }
             else if (!fi.Exists && FileChecker.isDownloaded)
             {
                 Displaying_Debug_Data.Text = "Installing file: " + Updater.DownloadPath;
-                Installer.InstallExe(tempFileInstallation);
+                Installer.InstallExe(TempFileInstallation);
                 Displaying_Debug_Data.IsEnabled = false;
             }
-            else
+            /*else
             {
                 process = Process.Start(file);
                 process.EnableRaisingEvents = true;
                 WindowState = WindowState.Minimized;
                 Task.Delay(DelayforWindowStateAnim).Wait();
                 ShowInTaskbar = false;
-            }
+            }*/
+            //ovo tria bit ode jer vako nako su ti skinuti svi files i installed nakn onog gori       
+            process = Process.Start(File);
+            process.EnableRaisingEvents = true;
+            WindowState = WindowState.Minimized;
+            await Task.Delay(DelayForWindowStateAnim); //awaitas jer imas gori async
+            ShowInTaskbar = false;
         }
 
         private void Options_Button_Click(object sender, RoutedEventArgs e)
