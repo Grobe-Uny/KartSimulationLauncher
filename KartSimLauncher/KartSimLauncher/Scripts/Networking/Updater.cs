@@ -26,7 +26,8 @@ namespace KartSimLauncher.Scripts.Networking
         public static string DownloadFolder = @"C:\TempDownload";
         public static void CreateTempDir()
         {   
-            Directory.CreateDirectory(@"C:\TempDownload").Create();
+            //Directory.CreateDirectory(@"C:\TempDownload").Create(); lose 
+            Directory.CreateDirectory(DownloadFolder);
         }
         
 
@@ -37,9 +38,9 @@ namespace KartSimLauncher.Scripts.Networking
             isAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
             
             CreateTempDir();
-            File.Create(DownloadPath).Close();
+            //File.Create(DownloadPath).Close(); nepotrebno
             var bytes = await nezDownloadnesto();
-            await File.WriteAllBytesAsync(DownloadPath, bytes);
+            await File.WriteAllBytesAsync(DownloadPath, bytes); //ovo ce samo napravit file
 
         }
         public static async Task<byte[]> nezDownloadnesto()
